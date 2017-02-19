@@ -923,20 +923,27 @@ theme.MobileNav = (function() {
     cache.$subNavToggleBtn.on('click.subNav', toggleSubNav);
 
     // Close mobile nav when unmatching mobile breakpoint
-    enquire.register(mediaQuerySmall, {
-      unmatch: function() {
-        closeMobileNav();
-      }
-    });
+//     enquire.register(mediaQuerySmall, {
+//       unmatch: function() {
+//         closeMobileNav();
+//       }
+//     });
   }
-
+  
+if (window.matchMedia("(max-width: 750px)").matches) {
+  console.log("the screen-width is under 750 and therefore the mobile navigation should work");
   function toggleMobileNav() {
     if (cache.$mobileNavToggle.hasClass(classes.mobileNavCloseIcon)) {
       closeMobileNav();
+      console.log("Yea boi");
     } else {
       openMobileNav();
     }
   }
+} else {
+	console.log('screenwidth is more than 750, mobile nav does not apply');
+  // insert code for desktop navigation pop-out!
+}
 
   function cacheSelectors() {
     cache = {
@@ -951,11 +958,11 @@ theme.MobileNav = (function() {
 
   function openMobileNav() {
     var translateHeaderHeight = cache.$siteHeader.outerHeight() + cache.$siteHeader.offset().top;
-
+    
     cache.$mobileNavContainer
       .prepareTransition()
       .addClass(classes.navOpen);
-
+    
     cache.$mobileNavContainer.css({
       transform: 'translate3d(0, ' + translateHeaderHeight + 'px, 0)'
     });
@@ -978,7 +985,7 @@ theme.MobileNav = (function() {
         closeMobileNav();
       }
     });
-  }
+}
 
   function closeMobileNav() {
     cache.$mobileNavContainer.prepareTransition().removeClass(classes.navOpen);
@@ -1001,7 +1008,7 @@ theme.MobileNav = (function() {
 
     $(window).off('keyup.mobileNav');
   }
-
+   
   function toggleSubNav(evt) {
     if (isTransitioning) {
       return;

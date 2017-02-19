@@ -112,7 +112,7 @@
         ],
         "settings": {
           "autoplay": true,
-          "autoplay_speed": "7000",
+          "autoplay_speed": "5000",
           "slideshow_height": "large",
           "text_size": "medium"
         }
@@ -120,7 +120,7 @@
       "footer": {
         "type": "footer",
         "settings": {
-          "footer_linklist": "footer",
+          "footer_linklist": "",
           "footer_linklist_two": "",
           "footer_newsletter_enable": false,
           "show_payment_icons": false
@@ -134,8 +134,8 @@
           "rows": "2",
           "show_collection_image": true,
           "show_vendor": false,
-          "sort_enable": true,
-          "tags_enable": true
+          "sort_enable": false,
+          "tags_enable": false
         }
       },
       "product-template": {
