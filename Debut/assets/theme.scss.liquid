@@ -2420,8 +2420,8 @@ hr {
 ==============================================================================*/
 .is-transitioning {
   // sass-lint:disable no-important
-  display: flex !important;
-  visibility: visible !important;
+  display: flex;
+  visibility: visible;
   justify-content: center;
 }
 
@@ -4190,8 +4190,11 @@ $mobile-nav-button-padding: 15px;
   }
 }
 
-/*================ Mobile nav wrapper ================*/
-.mobile-nav-wrapper {
+/*================ Navigation Styles ================*/
+/*==== 1. Mobile nav wrapper         ================*/
+
+.mobile-nav-wrapper,
+.desktop-nav-wrapper {
   @include transform(translate3d(0, -100%, 0));
   position: absolute;
   background-color: $color-body;
@@ -4226,6 +4229,9 @@ $mobile-nav-button-padding: 15px;
     display: none;
   }
 }
+
+/*==== 2. Desktop nav wrapper         ================*/
+
 
 /*================ Modals ================*/
 .modal {
