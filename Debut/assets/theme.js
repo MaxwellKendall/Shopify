@@ -920,68 +920,42 @@ theme.MobileNav = (function() {
     cacheSelectors();
 
     cache.$mobileNavToggle.on('click', toggleMobileNav);
-    cache.$mobileNavToggle.on('click', toggleDesktopNav);
     cache.$subNavToggleBtn.on('click.subNav', toggleSubNav);
 
     // Close mobile nav when unmatching mobile breakpoint
-//     enquire.register(mediaQuerySmall, {
-//       unmatch: function() {
-//         closeMobileNav();
-//       }
-//     });
+    enquire.register(mediaQuerySmall, {
+      unmatch: function() {
+        closeMobileNav();
+      }
+    });
   }
-  
-if (window.matchMedia("(max-width: 750px)").matches) {
-  console.log("the screen-width is under 750 and therefore the mobile navigation should work");
+
   function toggleMobileNav() {
-        console.log('toggleMobileNav');
     if (cache.$mobileNavToggle.hasClass(classes.mobileNavCloseIcon)) {
       closeMobileNav();
-      console.log("Yea boi");
     } else {
       openMobileNav();
     }
   }
-} else {
-	console.log('screenwidth is more than 750, mobile nav does not apply');
-  // insert code for desktop navigation pop-out!
-  function toggleDesktopNav() {
-    console.log('toggleDesktopNav');
-    if (cache.$mobileNavToggle.hasClass(classes.mobileNavCloseIcon)) { 
-      // this is the button; either a hamburger or a close icon
-      closeDesktopNav();
-      console.log("Yea boi");
-    } else {
-      openDesktopNav();
-    }
-  }
-}
 
   function cacheSelectors() {
-      // mobileNavToggle is the hamburger icon or close icon
     cache = {
       $pageContainer: $('#PageContainer'),
       $siteHeader: $('.site-header'),
-      $mobileNavToggle: $('.js-mobile-nav-toggle'), 
+      $mobileNavToggle: $('.js-mobile-nav-toggle'),
       $mobileNavContainer: $('.mobile-nav-wrapper'),
       $mobileNav: $('#MobileNav'),
-      $desktopNav: $('#DesktopNav'),
-      $subNavToggleBtn: $('.' + classes.subNavToggleBtn),
+      $subNavToggleBtn: $('.' + classes.subNavToggleBtn)
     };
   }
 
-// Code for navigation menus:
-  // 1. Mobile Navigation
-
-  // a. OpenMobileNav
-
   function openMobileNav() {
     var translateHeaderHeight = cache.$siteHeader.outerHeight() + cache.$siteHeader.offset().top;
-    
+
     cache.$mobileNavContainer
       .prepareTransition()
       .addClass(classes.navOpen);
-    
+
     cache.$mobileNavContainer.css({
       transform: 'translate3d(0, ' + translateHeaderHeight + 'px, 0)'
     });
@@ -1004,10 +978,9 @@ if (window.matchMedia("(max-width: 750px)").matches) {
         closeMobileNav();
       }
     });
-}
- // b. Closing Mobile Navitaion Menu:
+  }
 
-    function closeMobileNav() {
+  function closeMobileNav() {
     cache.$mobileNavContainer.prepareTransition().removeClass(classes.navOpen);
 
     cache.$mobileNavContainer.css({
@@ -1027,62 +1000,8 @@ if (window.matchMedia("(max-width: 750px)").matches) {
       .removeClass(classes.mobileNavCloseIcon);
 
     $(window).off('keyup.mobileNav');
-    }
-
-
-// 2. Desktop Navigation menu Pop-Out
-
-  // a. Opening Desktop Navigation Menu
-
-    function openDesktopNav() {
-    cache.$desktopNav
-      .prepareTransition()
-      .addClass(classes.navOpen);
-      
-    slate.a11y.trapFocus({
-      $container: cache.$desktopNav,
-      namespace: 'navFocus'
-    });
-      
-//keeping the mobile nav name, this just refers to the 'js-mobile-nav-toggle' class on the hamburger svg!
-    cache.$mobileNavToggle 
-      .addClass(classes.mobileNavCloseIcon)
-      .removeClass(classes.mobileNavOpenIcon);
-
-    // close on escape
-    $(window).on('keyup.mobileNav', function(evt) {
-      if (evt.which === 27) {
-        closeMobileNav();
-      }
-    });
-
-    }
-
-    // b. Closing Desktop Navigation Menu
-
-   function closeDesktopNav() {
-    var translateHeaderHeight = cache.$siteHeader.outerHeight() + cache.$siteHeader.offset().top;
-     console.log(translateHeaderHeight);
-    cache.$desktopNav.prepareTransition().removeClass(classes.navOpen);
-    cache.$desktopNav.css({
-      transform: 'translate3d(0, -' + translateHeaderHeight +'px , 0)'
-    });
-    cache.$pageContainer.removeAttr('style');
-
-    cache.$mobileNavContainer.one('TransitionEnd.navToggle webkitTransitionEnd.navToggle transitionend.navToggle oTransitionEnd.navToggle', function() {
-      slate.a11y.removeTrapFocus({
-        $container: cache.$desktopNav,
-        namespace: 'navFocus'
-      });
-    });
-
-    cache.$mobileNavToggle
-      .addClass(classes.mobileNavOpenIcon)
-      .removeClass(classes.mobileNavCloseIcon);
-
-    $(window).off('keyup.mobileNav');
   }
-   
+
   function toggleSubNav(evt) {
     if (isTransitioning) {
       return;
@@ -2809,4 +2728,5 @@ theme.init = function() {
   });
 
 };
+
 $(theme.init);

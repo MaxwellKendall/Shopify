@@ -374,7 +374,7 @@ $z-index-skip-to-content: 10000; // really high to be safe of app markup
 $svg-select-icon: #{'{{ "ico-select.svg" | asset_url }}'};
 
 /*================ Drawers ================*/
-$transition-drawer: all .75s cubic-bezier(0.29, 0.63, 0.44, 1);
+$transition-drawer: all 0.45s cubic-bezier(0.29, 0.63, 0.44, 1);
 
 /*================ Hero ================*/
 $color-background-hero-button: #fff;
@@ -2368,18 +2368,17 @@ hr {
     padding-right: $gutter-site-mobile;
   }
 }
-.site-header .grid--table {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  
-    > .grid__item {
+
+.grid--table {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+
+  > .grid__item {
     float: none;
-    display: flex;
-    align-items: center;
-  		
-	}
+    display: table-cell;
+    vertical-align: middle;
+  }
 }
 
 .grid--no-gutters {
@@ -2420,9 +2419,8 @@ hr {
 ==============================================================================*/
 .is-transitioning {
   // sass-lint:disable no-important
-  display: flex;
-  visibility: visible;
-  justify-content: center;
+  display: block !important;
+  visibility: visible !important;
 }
 
 @mixin animation($animation) {
@@ -3526,10 +3524,7 @@ h1.product-single__title {
 .site-header {
   background-color: $color-body;
   position: relative;
-  display: flex;
   padding: 0 $gutter-site;
-  justify-content: flex-start;
-  align-items: center;
 
   @include media-query($small) {
     border-bottom: 1px solid $color-border;
@@ -3596,11 +3591,7 @@ h1.product-single__title {
 
 .site-header__icons-wrapper {
   position: relative;
-  margin-right: 0px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  justify-content: flex-end;
+  margin-right: -10px;
 }
 
 .site-header__cart,
@@ -3622,7 +3613,7 @@ h1.product-single__title {
   .site-header__account {
     position: absolute;
     top: 50%;
-    left: 55px;
+    right: 0;
     padding: 8px 0;
     @include transform(translateY(-50%));
   }
@@ -3690,12 +3681,12 @@ h1.product-single__title {
   }
 }
 
-/* 
+
 .site-header__menu {
   display: none;
-} */
+}
 
-/* .site-header .icon-search, */
+.site-header .icon-search,
 .site-header .icon-hamburger,
 .site-header .icon-close,
 .site-header .icon-cart {
@@ -3717,22 +3708,18 @@ h1.product-single__title {
   }
 
   .site-header__menu,
-/*   .site-header__search-toggle, */
+  .site-header__search-toggle,
   .site-header__cart,
   .site-header__account {
     display: inline-block;
     vertical-align: middle;
     padding: 18px 8px;
     margin: 0;
+
     .site-header__icons--plus & {
       padding: 18px 6px;
     }
-
   }
-
-  .site-header__search-toggle {
-    	display: none;
-    }
 
   .site-header__logo {
     text-align: left;
@@ -4023,8 +4010,7 @@ h1.product-single__title {
 
 /*================ Header Search ================*/
 .search-header {
-/*   display: inline-block; */
-  display:none;
+  display: inline-block;
   position: relative;
   width: 100%;
   max-width: 30px;
@@ -4080,7 +4066,6 @@ $return-button-width: 55px;
 $mobile-nav-button-padding: 15px;
 
 /*================ Mobile Site Nav ================*/
-
 .mobile-nav {
   display: block;
   @include transform(translate3d(0, 0, 0));
@@ -4094,6 +4079,7 @@ $mobile-nav-button-padding: 15px;
     @include transform(translate3d(-200%, 0, 0));
   }
 }
+
 .mobile-nav__link,
 .mobile-nav__sublist-link {
   display: block;
@@ -4190,11 +4176,8 @@ $mobile-nav-button-padding: 15px;
   }
 }
 
-/*================ Navigation Styles ================*/
-/*==== 1. Mobile nav wrapper         ================*/
-
-.mobile-nav-wrapper,
-.desktop-nav-wrapper {
+/*================ Mobile nav wrapper ================*/
+.mobile-nav-wrapper {
   @include transform(translate3d(0, -100%, 0));
   position: absolute;
   background-color: $color-body;
@@ -4213,8 +4196,7 @@ $mobile-nav-button-padding: 15px;
   }
 
   &.js-menu--is-open {
-    display: flex;
-    justify-content: center;
+    display: block;
   }
 }
 
@@ -4229,9 +4211,6 @@ $mobile-nav-button-padding: 15px;
     display: none;
   }
 }
-
-/*==== 2. Desktop nav wrapper         ================*/
-
 
 /*================ Modals ================*/
 .modal {
@@ -5503,38 +5482,3 @@ $toolbar-height-small: 46px;
   text-align: right;
 }
 
-/*================ Custom Header Styles ================*/
-
-.site-header {
-	
-  .logo-align--left {
-      margin-right: auto;
-      width: auto;
-  }
-  .site-header__icons {
-    @include media-query($small) {
-    	width: auto;
-        display: flex;
-    	justify-content: flex-end;
-    	align-items: center;
-    }
-
-		width: 10%;
-
-  }
-  .site-header__cart {
-	display: flex;
-    align-self: center;
-    transform: none;
-    padding: none;
-    margin: 10px;
-    order: 2;
-    position: relative;
-    top: 0;
-    left: 0;
-  }
-}
-
-  .no-display {
-  	display: none;
-  }
