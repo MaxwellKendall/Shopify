@@ -967,7 +967,6 @@ if (window.matchMedia("(max-width: 750px)").matches) {
       $mobileNav: $('#MobileNav'),
       $desktopNav: $('#DesktopNav'),
       $subNavToggleBtn: $('.' + classes.subNavToggleBtn),
-      $desktopNavContainer: $('#DesktopNav')
     };
   }
 
@@ -978,11 +977,11 @@ if (window.matchMedia("(max-width: 750px)").matches) {
 
   function openMobileNav() {
     var translateHeaderHeight = cache.$siteHeader.outerHeight() + cache.$siteHeader.offset().top;
-
+    
     cache.$mobileNavContainer
       .prepareTransition()
       .addClass(classes.navOpen);
-
+    
     cache.$mobileNavContainer.css({
       transform: 'translate3d(0, ' + translateHeaderHeight + 'px, 0)'
     });
@@ -1036,32 +1035,17 @@ if (window.matchMedia("(max-width: 750px)").matches) {
   // a. Opening Desktop Navigation Menu
 
     function openDesktopNav() {
-
-    var translateHeaderHeight = cache.$siteHeader.outerHeight() + cache.$siteHeader.offset().top;
-    var translatePageWidth = -500;
-
-    cache.$desktopNavContainer.css({
-        transform: 'translate3d(0, ' + translateHeaderHeight + 'px, 0)'
-    });
-
-    cache.$pageContainer.css({
-      transform: 'translate3d('+ translatePageWidth + 'px, 0, 0)'
-    });
-
-    cache.$desktopNavContainer
+    cache.$desktopNav
       .prepareTransition()
       .addClass(classes.navOpen);
-
-    cache.$desktopNavContainer.css({
-      background: 'orange'
-    });
-
+      
     slate.a11y.trapFocus({
       $container: cache.$desktopNav,
       namespace: 'navFocus'
     });
-
-    cache.$mobileNavToggle //keeping the mobile nav name, this just refers to the 'js-mobile-nav-toggle' class!
+      
+//keeping the mobile nav name, this just refers to the 'js-mobile-nav-toggle' class on the hamburger svg!
+    cache.$mobileNavToggle 
       .addClass(classes.mobileNavCloseIcon)
       .removeClass(classes.mobileNavOpenIcon);
 
@@ -1079,8 +1063,8 @@ if (window.matchMedia("(max-width: 750px)").matches) {
    function closeDesktopNav() {
     var translateHeaderHeight = cache.$siteHeader.outerHeight() + cache.$siteHeader.offset().top;
      console.log(translateHeaderHeight);
-    cache.$desktopNavContainer.prepareTransition().removeClass(classes.navOpen);
-    cache.$desktopNavContainer.css({
+    cache.$desktopNav.prepareTransition().removeClass(classes.navOpen);
+    cache.$desktopNav.css({
       transform: 'translate3d(0, -' + translateHeaderHeight +'px , 0)'
     });
     cache.$pageContainer.removeAttr('style');

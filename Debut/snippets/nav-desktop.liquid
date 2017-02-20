@@ -1,4 +1,4 @@
-<nav id="DesktopNav" class="desktop-nav-wrapper" role="navigation">
+<nav id="DesktopNav" class="desktop-nav-wrapper no-display" role="navigation">
     <ul class="desktop-nav">
       {% for link in linklists[section.settings.main_linklist].links %}
         {%- assign child_list_handle = link.title | handleize -%}

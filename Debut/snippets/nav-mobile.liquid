@@ -1,4 +1,4 @@
-<nav id="MobileNav" class="mobile-nav-wrapper" role="navigation">
+<nav id="MobileNav" class="mobile-nav-wrapper no-display" role="navigation">
     <ul class="mobile-nav">
       {% for link in linklists[section.settings.main_linklist].links %}
         {%- assign child_list_handle = link.title | handleize -%}
