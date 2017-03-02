@@ -374,7 +374,7 @@ $z-index-skip-to-content: 10000; // really high to be safe of app markup
 $svg-select-icon: #{'{{ "ico-select.svg" | asset_url }}'};
 
 /*================ Drawers ================*/
-$transition-drawer: all 0.45s cubic-bezier(0.29, 0.63, 0.44, 1);
+$transition-drawer: all .75s cubic-bezier(0.29, 0.63, 0.44, 1);
 
 /*================ Hero ================*/
 $color-background-hero-button: #fff;
@@ -2368,17 +2368,18 @@ hr {
     padding-right: $gutter-site-mobile;
   }
 }
-
-.grid--table {
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-
-  > .grid__item {
+.site-header .grid--table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  
+    > .grid__item {
     float: none;
-    display: table-cell;
-    vertical-align: middle;
-  }
+    display: flex;
+    align-items: center;
+  		
+	}
 }
 
 .grid--no-gutters {
@@ -2419,8 +2420,9 @@ hr {
 ==============================================================================*/
 .is-transitioning {
   // sass-lint:disable no-important
-  display: block !important;
-  visibility: visible !important;
+  display: flex;
+  visibility: visible;
+  justify-content: center;
 }
 
 @mixin animation($animation) {
@@ -3524,7 +3526,11 @@ h1.product-single__title {
 .site-header {
   background-color: $color-body;
   position: relative;
-  padding: 0 $gutter-site;
+  display: flex;
+/*   padding: 0 $gutter-site; */
+  padding: 0;
+  justify-content: flex-start;
+  align-items: center;
 
   @include media-query($small) {
     border-bottom: 1px solid $color-border;
@@ -3591,7 +3597,11 @@ h1.product-single__title {
 
 .site-header__icons-wrapper {
   position: relative;
-  margin-right: -10px;
+  margin-right: 0px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  justify-content: flex-end;
 }
 
 .site-header__cart,
@@ -3613,7 +3623,7 @@ h1.product-single__title {
   .site-header__account {
     position: absolute;
     top: 50%;
-    right: 0;
+    left: 55px;
     padding: 8px 0;
     @include transform(translateY(-50%));
   }
@@ -3681,12 +3691,12 @@ h1.product-single__title {
   }
 }
 
-
+/* 
 .site-header__menu {
   display: none;
-}
+} */
 
-.site-header .icon-search,
+/* .site-header .icon-search, */
 .site-header .icon-hamburger,
 .site-header .icon-close,
 .site-header .icon-cart {
@@ -3708,18 +3718,22 @@ h1.product-single__title {
   }
 
   .site-header__menu,
-  .site-header__search-toggle,
+/*   .site-header__search-toggle, */
   .site-header__cart,
   .site-header__account {
     display: inline-block;
     vertical-align: middle;
     padding: 18px 8px;
     margin: 0;
-
     .site-header__icons--plus & {
       padding: 18px 6px;
     }
+
   }
+
+  .site-header__search-toggle {
+    	display: none;
+    }
 
   .site-header__logo {
     text-align: left;
@@ -4010,7 +4024,8 @@ h1.product-single__title {
 
 /*================ Header Search ================*/
 .search-header {
-  display: inline-block;
+/*   display: inline-block; */
+  display:none;
   position: relative;
   width: 100%;
   max-width: 30px;
@@ -4066,6 +4081,7 @@ $return-button-width: 55px;
 $mobile-nav-button-padding: 15px;
 
 /*================ Mobile Site Nav ================*/
+
 .mobile-nav {
   display: block;
   @include transform(translate3d(0, 0, 0));
@@ -4079,7 +4095,6 @@ $mobile-nav-button-padding: 15px;
     @include transform(translate3d(-200%, 0, 0));
   }
 }
-
 .mobile-nav__link,
 .mobile-nav__sublist-link {
   display: block;
@@ -4176,8 +4191,11 @@ $mobile-nav-button-padding: 15px;
   }
 }
 
-/*================ Mobile nav wrapper ================*/
-.mobile-nav-wrapper {
+/*================ Navigation Styles ================*/
+/*==== 1. Mobile nav wrapper         ================*/
+
+.mobile-nav-wrapper,
+.desktop-nav-wrapper {
   @include transform(translate3d(0, -100%, 0));
   position: absolute;
   background-color: $color-body;
@@ -4196,7 +4214,8 @@ $mobile-nav-button-padding: 15px;
   }
 
   &.js-menu--is-open {
-    display: block;
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -4211,6 +4230,9 @@ $mobile-nav-button-padding: 15px;
     display: none;
   }
 }
+
+/*==== 2. Desktop nav wrapper         ================*/
+
 
 /*================ Modals ================*/
 .modal {
@@ -5482,3 +5504,113 @@ $toolbar-height-small: 46px;
   text-align: right;
 }
 
+/*================ Custom Header Styles ================*/
+
+#home-page-header-container {
+  	width: 100%;
+    @include media-query($medium-up){
+    background: url('https://cdn.shopify.com/s/files/1/1742/5577/files/more_saturation.png?15474728602978812000');
+	background-repeat: no-repeat;
+	background-size: cover;
+    padding: 100px 0px 550px 0px;
+    }
+}
+.site-header {
+  	width: 100%;
+    margin: auto;
+    background: transparent;
+    @include media-query($medium-up){
+	width: 65%;
+    }
+  .logo-align--left {
+      margin-right: auto;
+      width: auto;
+  }
+  .site-header__icons {
+    @include media-query($small) {
+    	width: auto;
+        display: flex;
+    	justify-content: flex-end;
+    	align-items: center;
+      }
+		width: 10%;
+  }
+  .site-header__cart {
+	display: flex;
+    align-self: center;
+    transform: none;
+    padding: none;
+    margin: 10px;
+    order: 2;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+}
+
+.no-display {
+  display: none;
+}
+
+.desktopNavStyles {
+  transform: translateY(40px);
+  width: 25%;
+  z-index: 5;
+  top: 0px;
+  right: 0px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-page-container {
+  @include media-query($medium-up){
+	width: 65%;
+  	margin: auto;
+	margin-top: -566px;  
+	}
+}
+
+/* Desktop Navigation styles oooo yea!!! */ 
+
+#DesktopNav {
+  border: 1px solid red;
+}
+
+
+
+
+/*================ Custom Collections-page Styles ================*/
+
+.product-h1 {
+	display: none;
+}
+
+/*================ Custom Contact-page Styles ================*/
+
+.about-me {
+    @include media-query($medium-up){
+    display: flex;
+    justify-content: center;
+    width: 75%;
+	}
+}
+.about-me-image {
+  @include media-query($medium-up){
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    img {
+      @include media-query($medium-up){
+        height: auto;
+        width: auto;
+        border-radius: 115px;
+        overflow: hidden;
+    	}
+	}
+}

@@ -13,13 +13,11 @@
 
       <div class="contact-form form-vertical">
         {% form 'contact' %}
-
-          {% if form.posted_successfully? %}
-            <p class="note form-success">
-              {{ 'contact.form.post_success' | t }}
-            </p>
-          {% endif %}
-
+            {% if form.posted_successfully? %}
+              <script>
+                window.location = "/pages/contact-confirmation";
+              </script>
+        {% endif %}
           {{ form.errors | default_errors }}
 
           <div class="grid grid--half-gutters">

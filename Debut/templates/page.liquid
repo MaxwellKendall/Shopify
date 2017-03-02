@@ -4,8 +4,11 @@
       <div class="section-header text-center">
         <h1>{{ page.title }}</h1>
       </div>
-
+        {% if page.handle contains 'about-me' %}
+      <div class="rte about-me">
+        {% else %}
       <div class="rte">
+		{% endif %}
         {{ page.content }}
       </div>
     </div>

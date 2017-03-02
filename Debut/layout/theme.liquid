@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="{{ settings.color_button }}">
   <link rel="canonical" href="{{ canonical_url }}">
-
   {% if settings.favicon != blank %}
     <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
   {% endif %}
@@ -24,7 +23,7 @@
       &ndash; {{ shop.name }}
     {% endunless %}
   {% endcapture %}
-  <title>helloooooOOoOoOO</title>
+  <title>{{seo_title}}</title>
 
   {% if page_description %}
     <meta name="description" content="{{ page_description | escape }}">
@@ -33,6 +32,8 @@
   {% include 'social-meta-tags' %}
 
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'custom-styles.scss.css' | asset_url | stylesheet_tag }}
+
   {% include 'google-fonts' %}
 
   <script>
@@ -91,9 +92,11 @@
   </div>
 
   {% section 'header' %}
-
-  <div class="page-container" id="PageContainer">
-
+  {% if template == 'index' %}
+    <div id="page-container" class="home-page-container">
+  {% else %}
+    <div id="page-container" class="page-container">
+  {% endif %}
     <main class="main-content" id="MainContent" role="main">
       {{ content_for_layout }}
     </main>
