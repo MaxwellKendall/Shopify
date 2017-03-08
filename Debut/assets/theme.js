@@ -1040,10 +1040,14 @@ if (window.matchMedia("(max-width: 750px)").matches) {
 
     function openDesktopNav() {
       var navWidth = $('#page-container').css('marginRight');
+      var slideWidth = $('#slickSlide00').width();
+      var activeSlide = $('.slick-active').not('style').not('.slideshow__image').not('.slideshow__text-wrap').not('li');
+      var slide = activeSlide.attr('id');
+      $('#'+slide).width(slideWidth + 'px');
      cache.$desktopNav
       .prepareTransition()
       .removeClass('no-display');
-      $('#js-style').html('#template-body { margin-right:' + navWidth + ';} #DesktopNav { right: 0; width: ' + navWidth + ';}');
+      $('#js-style').html('#template-body {transform: translateX( -' + navWidth + ')} #DesktopNav { right: -' + navWidth + '; width: ' + navWidth + ';}');
 
     slate.a11y.trapFocus({
       $container: cache.$desktopNav,
@@ -1069,7 +1073,7 @@ if (window.matchMedia("(max-width: 750px)").matches) {
    function closeDesktopNav() {
     cache.$desktopNav.prepareTransition().removeClass(classes.navOpen);
     cache.$pageContainer.removeAttr('style');
-     $('#js-style').html('#template-body { margin-right: 0;} #DesktopNav {right: -100%;}');
+     $('#js-style').html('#template-body { transform: translateX(0);} #DesktopNav {right: -100%;}');
     cache.$mobileNavContainer.one('TransitionEnd.navToggle webkitTransitionEnd.navToggle transitionend.navToggle oTransitionEnd.navToggle', function() {
       slate.a11y.removeTrapFocus({
         $container: cache.$desktopNav,
@@ -1079,48 +1083,47 @@ if (window.matchMedia("(max-width: 750px)").matches) {
      
      // Enter code here to automatically change the current slide to the next slide
      
-     var slides = [];
-     var slide0 = $('#slickSlide00');
-     var slide1 = $('#slickSlide01');
-     var slide2 = $('#slickSlide02');
-     var slide3 = $('#slickSlide03');
-     var dot0 = $('#slickDot00');
-
-	 slides.push(slide0, slide1, slide2, slide3);
+     var slideWidth = $('#slickSlide00').width();
+//      var slide0 = $('#slickSlide00');
+//      var slide1 = $('#slickSlide01');
+//      var slide2 = $('#slickSlide02');
+//      var slide3 = $('#slickSlide03');
+//      var dot0 = $('#slickDot00');
      
-     var activeSlide = $('.slick-active').not('style').not('.slideshow__image').not('.slideshow__text-wrap').not('li');
-     var activeDot = $('.slick-active').not('style').not('div').not('.slideshow__image').not('.slideshow__text-wrap');
-     var nextSlide = $('.slick-active').next().not('style').not('.slideshow__image').not('.slideshow__text-wrap').not('li');
-     var nextDot = $('.slick-active').next().not('style').not('div').not('.slideshow__image').not('.slideshow__text-wrap');
+     var activeSlide = $('.slick-active').children().not('style').not('button').not('.slideshow__text-wrap').not('li');
+     //      var activeDot = $('.slick-active').not('style').not('div').not('.slideshow__image').not('.slideshow__text-wrap');
+//      var nextSlide = $('.slick-active').next().not('style').not('.slideshow__image').not('.slideshow__text-wrap').not('li');
+//      var nextDot = $('.slick-active').next().not('style').not('div').not('.slideshow__image').not('.slideshow__text-wrap');
 
      
-     // set z-index: 998; opacity: 0; for active slide
+//      // set z-index: 998; opacity: 0; for active slide
      
      activeSlide.css({
-       "z-index": "998",
-       "opacity": "0"
-     });
-     activeDot.removeClass('slick-active'); 
-     
-     // if active slide is last slide, go to the first slide
-    if(activeSlide.attr('id') === 'slickSlide03'){
-        console.log('yes');
-      slide0.css({
-       "z-index": "999",
-       "opacity": "1"
-     });
-      dot0.addClass('slick-active'); 
-    }
+       "width" : slideWidth + 'px'
 
-     // set z-index: 999; opacity: 1; for next slide
-     
-     nextSlide.css({
-       "z-index": "999",
-       "opacity": "1"
      });
-     nextDot.addClass('slick-active');
+//      activeDot.removeClass('slick-active'); 
      
-     // Update buttons
+//      // if active slide is last slide, go to the first slide
+//     if(activeSlide.attr('id') === 'slickSlide03'){
+//       slide0.css({
+//         "z-index": "999",
+//         "opacity": "1",
+//         "width" : slideWidth + 'px'
+//       });
+//       dot0.addClass('slick-active'); 
+//     }
+
+//      // set z-index: 999; opacity: 1; for next slide
+     
+//      nextSlide.css({
+//        "z-index": "999",
+//        "opacity": "1",
+//        "width" : slideWidth + 'px'
+//      });
+//      nextDot.addClass('slick-active');
+     
+//      // Update buttons
 
     cache.$mobileNavToggle
       .addClass(classes.mobileNavOpenIcon)
@@ -1130,6 +1133,8 @@ if (window.matchMedia("(max-width: 750px)").matches) {
       .removeClass(classes.desktopNavOpen);
     $(window).off('keyup.mobileNav');
   }
+  
+  
    
   function toggleSubNav(evt) {
     if (isTransitioning) {
