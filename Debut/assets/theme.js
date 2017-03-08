@@ -969,7 +969,8 @@ if (window.matchMedia("(max-width: 750px)").matches) {
       $mobileNav: $('#MobileNav'),
       $desktopNav: $('#DesktopNav'),
       $subNavToggleBtn: $('.' + classes.subNavToggleBtn),
-      $desktopCloseIcon: $('.desktop-close')
+      $desktopCloseIcon: $('.desktop-close'),
+      $body: $('#template-body')
     };
   }
 
@@ -1038,12 +1039,12 @@ if (window.matchMedia("(max-width: 750px)").matches) {
   // a. Opening Desktop Navigation Menu
 
     function openDesktopNav() {
-    cache.$desktopNav
+      var navWidth = $('#page-container').css('marginRight');
+     cache.$desktopNav
       .prepareTransition()
-      .addClass(classes.navOpen)
-      .addClass(classes.desktopNavOpen)
       .removeClass('no-display');
-      
+      $('#js-style').html('#template-body { margin-right:' + navWidth + ';} #DesktopNav { right: 0; width: ' + navWidth + ';}');
+
     slate.a11y.trapFocus({
       $container: cache.$desktopNav,
       namespace: 'navFocus'
@@ -1066,27 +1067,66 @@ if (window.matchMedia("(max-width: 750px)").matches) {
     // b. Closing Desktop Navigation Menu
 
    function closeDesktopNav() {
-    var translateHeaderHeight = cache.$siteHeader.outerHeight() + cache.$siteHeader.offset().top;
-     console.log(translateHeaderHeight);
     cache.$desktopNav.prepareTransition().removeClass(classes.navOpen);
-//     cache.$desktopNav.css({
-//       transform: 'translate3d(0, -' + translateHeaderHeight +'px , 0)'
-//     });
     cache.$pageContainer.removeAttr('style');
-
+     $('#js-style').html('#template-body { margin-right: 0;} #DesktopNav {right: -100%;}');
     cache.$mobileNavContainer.one('TransitionEnd.navToggle webkitTransitionEnd.navToggle transitionend.navToggle oTransitionEnd.navToggle', function() {
       slate.a11y.removeTrapFocus({
         $container: cache.$desktopNav,
         namespace: 'navFocus'
       });
     });
+     
+     // Enter code here to automatically change the current slide to the next slide
+     
+     var slides = [];
+     var slide0 = $('#slickSlide00');
+     var slide1 = $('#slickSlide01');
+     var slide2 = $('#slickSlide02');
+     var slide3 = $('#slickSlide03');
+     var dot0 = $('#slickDot00');
+
+	 slides.push(slide0, slide1, slide2, slide3);
+     
+     var activeSlide = $('.slick-active').not('style').not('.slideshow__image').not('.slideshow__text-wrap').not('li');
+     var activeDot = $('.slick-active').not('style').not('div').not('.slideshow__image').not('.slideshow__text-wrap');
+     var nextSlide = $('.slick-active').next().not('style').not('.slideshow__image').not('.slideshow__text-wrap').not('li');
+     var nextDot = $('.slick-active').next().not('style').not('div').not('.slideshow__image').not('.slideshow__text-wrap');
+
+     
+     // set z-index: 998; opacity: 0; for active slide
+     
+     activeSlide.css({
+       "z-index": "998",
+       "opacity": "0"
+     });
+     activeDot.removeClass('slick-active'); 
+     
+     // if active slide is last slide, go to the first slide
+    if(activeSlide.attr('id') === 'slickSlide03'){
+        console.log('yes');
+      slide0.css({
+       "z-index": "999",
+       "opacity": "1"
+     });
+      dot0.addClass('slick-active'); 
+    }
+
+     // set z-index: 999; opacity: 1; for next slide
+     
+     nextSlide.css({
+       "z-index": "999",
+       "opacity": "1"
+     });
+     nextDot.addClass('slick-active');
+     
+     // Update buttons
 
     cache.$mobileNavToggle
       .addClass(classes.mobileNavOpenIcon)
       .removeClass(classes.mobileNavCloseIcon);
 	
      cache.$desktopNav
-      .addClass('no-display')
       .removeClass(classes.desktopNavOpen);
     $(window).off('keyup.mobileNav');
   }
@@ -1407,11 +1447,12 @@ theme.Slideshow = (function() {
     }
   }
 
+  //** This is the function that updates the slide
+  
   function beforeChange(event, slick, currentSlide, nextSlide) {
     var $slider = slick.$slider;
     var $currentSlide = $slider.find('.' + classes.currentSlide);
     var $nextSlide = $slider.find('.slideshow__slide[data-slick-index="' + nextSlide + '"]');
-
     if (isVideoInSlide($currentSlide)) {
       var $currentVideo = $currentSlide.find('.' + classes.video);
       var currentVideoId = $currentVideo.attr('id');

@@ -65,12 +65,15 @@
   <!--[if lte IE 9]><script src="{{ 'theme.js' | asset_url }}"></script><![endif]-->
 
   {{ content_for_header }}
+  <style id="js-style" type='text/css'>
+      #template-body {
+        margin: 0px;
+      }
+    </style>
 </head>
-
-<body class="template-{{ template | split: '.' | first }}">
-
+  <body id="template-body" class="margin">
+  <div class="template-{{ template | split: '.' | first }}">
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
-
   <div id="SearchDrawer" class="search-bar drawer drawer--top">
     <div class="search-bar__table">
       <div class="search-bar__table-cell search-bar__form-wrapper">
@@ -93,16 +96,20 @@
 
   {% section 'header' %}
   {% if template == 'index' %}
-    <div id="page-container" class="home-page-container">
+    <div id="page-container">
+      <div class="home-page-container">
+          <main class="main-content" id="MainContent" role="main">
+            {{ content_for_layout }}
+          </main>
+      </div>
   {% else %}
     <div id="page-container" class="page-container">
-  {% endif %}
-    <main class="main-content" id="MainContent" role="main">
+          <main class="main-content" id="MainContent" role="main">
       {{ content_for_layout }}
     </main>
-
+  {% endif %}
     {% section 'footer' %}
-
   </div>
+</div>
 </body>
 </html>
