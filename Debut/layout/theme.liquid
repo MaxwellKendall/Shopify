@@ -71,6 +71,9 @@
       }
     </style>
 </head>
+  {% if template == 'index' %}
+  <body id="template-body" class='home-page'>
+  {% endif %}
   <body id="template-body">
   <div class="template-{{ template | split: '.' | first }}">
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>

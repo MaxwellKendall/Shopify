@@ -5508,10 +5508,6 @@ $toolbar-height-small: 46px;
 #home-page-header-container {
   	width: 100%;
     @include media-query($medium-up){
-    background: url('https://cdn.shopify.com/s/files/1/1742/5577/files/more_saturation.png?15474728602978812000');
-	background-repeat: no-repeat;
-	background-size: cover;
-    padding: 100px 0px 550px 0px;
     }
 }
 .site-header {
@@ -5572,7 +5568,6 @@ $toolbar-height-small: 46px;
 	}
   .home-page-container {
     @include media-query($medium-up){
-      margin-top: -566px;  
       }
 	}
   }
@@ -5588,7 +5583,7 @@ $toolbar-height-small: 46px;
   background: rgba(64, 176, 166, 0.75);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   ul {
   	display: flex;
@@ -5596,15 +5591,20 @@ $toolbar-height-small: 46px;
   	align-items: center;
     flex-direction: column;
     width: 100%;
+    margin-top: 25%;
   }
   
   li {
-    width: 100%;
-    height: calc(100vh / 4);
+    width: 75%;
+    height: calc(100vh / 10);
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid white;
+    border: none;
+    height: calc(100vh / 10);
+    margin: 5% 0;
+    width: 75%;
+    
   }
   
   a {
@@ -5612,17 +5612,24 @@ $toolbar-height-small: 46px;
     text-decoration: none;
     font-weight: bold;
     font-size: 18px;
-    padding: 25%;
+    padding: 14px 50px;
   }
 }
 
+#DesktopNav li:first-of-type {
+    position: relative;
+    top: 10%;
+    margin-bottom: 30%;
+}
+
 #DesktopNav li:hover {
+  &{
   background: rgba(178, 223, 219, 0.9);
   cursor: pointer;
   transform: scale(1.05);
   transition: transform .2s ease-in;
+	}
 }
-
 
 /*================ Custom Collections-page Styles ================*/
 
@@ -5636,24 +5643,25 @@ $toolbar-height-small: 46px;
     @include media-query($medium-up){
     display: flex;
     justify-content: center;
-    width: 75%;
+    width: 100%;
 	}
 }
 .about-me-image {
   @include media-query($medium-up){
-    width: 100%;
+    width: 300px;
+    height: 300px;
     overflow: hidden;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 50%;
+    position: relative;
   }
     img {
       @include media-query($medium-up){
-        height: auto;
-        width: auto;
-        border-radius: 115px;
-        overflow: hidden;
+        top: 0%;
+        position: absolute;
+        left: 0%;
     	}
 	}
 }
@@ -5667,4 +5675,24 @@ $toolbar-height-small: 46px;
     align-self: center;
     margin: auto;
     border-radius: 5px;
+}
+
+/* custome home page styles */
+
+#template-body {
+    @include media-query($medium-up) {
+    transition: transform .5s cubic-bezier(.51,.01,.44,.99);
+	}
+}
+.home-page {
+  @include media-query($medium-up) {
+    background: url(https://cdn.shopify.com/s/files/1/1742/5577/files/new_darker_moved_skew1.jpg?3379403901947597315);
+    padding-top: 100px;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+.site-footer {
+    margin: 55px 0 0 0;
 }

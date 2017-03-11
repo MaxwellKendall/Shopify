@@ -1039,7 +1039,7 @@ if (window.matchMedia("(max-width: 750px)").matches) {
   // a. Opening Desktop Navigation Menu
 
     function openDesktopNav() {
-      var navWidth = $('#page-container').css('marginRight');
+      var navWidth = $('#page-container').css('marginRight').substr(0,3);
       var slideWidth = $('#slickSlide00').width();
       var activeSlide = $('.slick-active').not('style').not('.slideshow__image').not('.slideshow__text-wrap').not('li');
       var slide = activeSlide.attr('id');
@@ -1047,7 +1047,9 @@ if (window.matchMedia("(max-width: 750px)").matches) {
      cache.$desktopNav
       .prepareTransition()
       .removeClass('no-display');
-      $('#js-style').html('#template-body {transform: translateX( -' + navWidth + ')} #DesktopNav { right: -' + navWidth + '; width: ' + navWidth + ';}');
+      $('#js-style').html('#template-body {transform: translateX(-' + (navWidth / 2) + 'px)} #DesktopNav { right:-' + (navWidth / 2) + 'px; width: ' + (navWidth) + 'px;}');
+
+//       $('#js-style').html('#template-body {transform: translateX( -' + navWidth + 'px;)} #DesktopNav { right: -' + navWidth + 'px; width: ' + navWidth + 'px;}');
 
     slate.a11y.trapFocus({
       $container: cache.$desktopNav,

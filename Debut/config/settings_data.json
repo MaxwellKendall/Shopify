@@ -77,7 +77,7 @@
             "type": "image",
             "settings": {
               "image": "shopify:\/\/shop_images\/slideShowBrushes.jpg",
-              "alignment": "center",
+              "alignment": "bottom",
               "title": "",
               "subheading": "",
               "link": ""
@@ -86,8 +86,8 @@
           "1486245852379": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/slideShowFlower.jpg",
-              "alignment": "top",
+              "image": "shopify:\/\/shop_images\/test8.jpg",
+              "alignment": "center",
               "title": "",
               "subheading": "",
               "link": ""
@@ -113,7 +113,7 @@
         "settings": {
           "autoplay": true,
           "autoplay_speed": "5000",
-          "slideshow_height": "large",
+          "slideshow_height": "small",
           "text_size": "medium"
         }
       },
