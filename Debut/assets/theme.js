@@ -769,7 +769,6 @@ theme.Drawers = (function() {
   return Drawer;
 })();
 
-
 /* ================ MODULES ================ */
 window.theme = window.theme || {};
 
@@ -895,6 +894,7 @@ theme.Header = (function() {
 
 window.theme = window.theme || {};
 
+
 theme.MobileNav = (function() {
   var classes = {
     mobileNavOpenIcon: 'mobile-nav--open',
@@ -973,8 +973,27 @@ if (window.matchMedia("(max-width: 750px)").matches) {
       $body: $('#template-body')
     };
   }
+  
+//Function to add selected navigation item class
 
+var navMenus = {
+  desktop : $('.desktop-nav').children().children(),
+  mobile : $('.mobile-nav').children().children()
+};
+
+$( document ).ready(addSelectedClass1);  
+function addSelectedClass1 (){
+  console.log('selected-desktop-nav-item class should be applied on desktop nav to the current selected pages corresponding navigation item');
+  for (var i = 0; i < navMenus.desktop.length; i ++){
+    console.log('adding class to nav-item is working');
+  if(window.location.href.substr(23) == $(navMenus.desktop[i]).attr('href')){
+     	$(navMenus.desktop[i]).parent().attr('id', 'selected-desktop-nav-item');
+     }    
+};
+}
+  
 // Code for navigation menus:
+  
   // 1. Mobile Navigation
 
   // a. OpenMobileNav
@@ -1039,7 +1058,8 @@ if (window.matchMedia("(max-width: 750px)").matches) {
   // a. Opening Desktop Navigation Menu
 
     function openDesktopNav() {
-      var navWidth = $('#page-container').css('marginRight').substr(0,3);
+//       var navWidth = $('#page-container').css('marginRight').substr(0,3);
+      var navWidth = ($(window).width() - $('#page-container').outerWidth()) / 2;
       var slideWidth = $('#slickSlide00').width();
       var activeSlide = $('.slick-active').not('style').not('.slideshow__image').not('.slideshow__text-wrap').not('li');
       var slide = activeSlide.attr('id');
@@ -1047,7 +1067,7 @@ if (window.matchMedia("(max-width: 750px)").matches) {
      cache.$desktopNav
       .prepareTransition()
       .removeClass('no-display');
-      $('#js-style').html('#template-body {transform: translateX(-' + (navWidth / 2) + 'px)} #DesktopNav { right:-' + (navWidth / 2) + 'px; width: ' + (navWidth) + 'px;}');
+      $('#js-style').html('#template-body {transform: translateX(-' + (navWidth / 2) + 'px)} #DesktopNav { transform: translateX(-' + (navWidth) + 'px); width: ' + (navWidth) + 'px;}');
 
 //       $('#js-style').html('#template-body {transform: translateX( -' + navWidth + 'px;)} #DesktopNav { right: -' + navWidth + 'px; width: ' + navWidth + 'px;}');
 
@@ -1228,7 +1248,7 @@ if (window.matchMedia("(max-width: 750px)").matches) {
 
     $activeSubNav.removeClass(classes.subNavClosing);
   }
-
+  
   return {
     init: init,
     closeMobileNav: closeMobileNav
@@ -2845,6 +2865,13 @@ $(document).ready(function() {
   sections.register('map', theme.Maps);
   sections.register('slideshow-section', theme.SlideshowSection);
   sections.register('quotes', theme.Quotes);
+});
+
+//Custom JS to get the newsletter button working
+
+$('#newsletter-button').click(function(){
+console.log('you just clicked the subscribe button');
+  window.location.href = 'https://ckendallart.com/pages/newsletter-subscription';
 });
 
 theme.init = function() {

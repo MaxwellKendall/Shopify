@@ -54,10 +54,10 @@
           "logo_max_width": "100",
           "main_linklist": "main-menu",
           "message": false,
-          "message_text": "Hello!",
+          "message_text": "Please sign up for my Newsletter here:",
           "message_link": "",
           "color_bg": "#7796A8",
-          "color_text": "#000000"
+          "color_text": "#ffffff"
         }
       },
       "slideshow": {
@@ -66,8 +66,8 @@
           "slideshow-0": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/slideShowBedroom.jpg",
-              "alignment": "center",
+              "image": "shopify:\/\/shop_images\/FinalSlideShowFlower.png",
+              "alignment": "bottom",
               "title": "",
               "subheading": "",
               "link": ""
@@ -76,8 +76,8 @@
           "slideshow-1": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/slideShowBrushes.jpg",
-              "alignment": "bottom",
+              "image": "shopify:\/\/shop_images\/AlternateFloralSlideshow.png",
+              "alignment": "center",
               "title": "",
               "subheading": "",
               "link": ""
@@ -86,7 +86,7 @@
           "1486245852379": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/test8.jpg",
+              "image": "shopify:\/\/shop_images\/SlideShowBedroom.png",
               "alignment": "center",
               "title": "",
               "subheading": "",
@@ -96,7 +96,7 @@
           "1486245886199": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/slideShowPhotoandFlower.jpg",
+              "image": "shopify:\/\/shop_images\/SlideShowBrushes.png",
               "alignment": "top",
               "title": "",
               "subheading": "",
@@ -113,7 +113,7 @@
         "settings": {
           "autoplay": true,
           "autoplay_speed": "5000",
-          "slideshow_height": "small",
+          "slideshow_height": "large",
           "text_size": "medium"
         }
       },
@@ -147,6 +147,20 @@
           "show_vendor": false,
           "enable_zoom": true,
           "show_share_buttons": true
+        }
+      },
+      "nav-desktop": {
+        "type": "nav-desktop",
+        "settings": {
+          "align_logo": "left",
+          "logo": "",
+          "logo_max_width": "100",
+          "main_linklist": "main-menu",
+          "message": false,
+          "message_text": "Announce something here",
+          "message_link": "",
+          "color_bg": "#7796A8",
+          "color_text": "#fff"
         }
       }
     },

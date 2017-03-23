@@ -50,7 +50,10 @@
             {% form 'customer' %}
               {{ form.errors | default_errors }}
               {% if form.posted_successfully? %}
-                <p class="form--success">{{ 'general.newsletter_form.confirmation' | t }}</p>
+            <div id='newsletter-success'>
+              <h1>We will keep you updated with the latest!</h1>
+            </div>
+<!--                 <p class="form--success">{{ 'general.newsletter_form.confirmation' | t }}</p> -->
               {% else %}
                 <label for="Email" class="h4">{{ 'general.newsletter_form.newsletter_email' | t }}</label>
                 <div class="input-group">
@@ -155,7 +158,10 @@
           </ul>
         </div>
       {% endif %}
-
+      <div id="newsletter">
+<!--         <label for="newsletter-button">Newsletter</label> -->
+          <input href="https://ckendallart.com/collections/all" id="newsletter-button" type="button" value="Sign Up for our Newsletter!">
+      </div>
       <div class="grid__item{% if section.settings.footer_newsletter_enable and social_icons == true %} medium-up--one-half{% else %} text-center{% endif %}">
         <div class="site-footer__copyright{% if social_icons and section.settings.footer_newsletter_enable != blank %} site-footer__copyright--right medium-up--text-right{% elsif social_icons == false and section.settings.footer_newsletter_enable %} medium-up--text-left{% endif %}">
           {% unless social_icons and section.settings.footer_newsletter_enable and section.settings.show_payment_icons %}

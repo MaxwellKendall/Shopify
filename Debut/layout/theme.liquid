@@ -32,7 +32,6 @@
   {% include 'social-meta-tags' %}
 
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'custom-styles.scss.css' | asset_url | stylesheet_tag }}
 
   {% include 'google-fonts' %}
 
@@ -71,48 +70,51 @@
       }
     </style>
 </head>
-  {% if template == 'index' %}
-  <body id="template-body" class='home-page'>
-  {% endif %}
-  <body id="template-body">
-  <div class="template-{{ template | split: '.' | first }}">
-  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
-  <div id="SearchDrawer" class="search-bar drawer drawer--top">
-    <div class="search-bar__table">
-      <div class="search-bar__table-cell search-bar__form-wrapper">
-        <form class="search search-bar__form" action="/search" method="get" role="search">
-          <button class="search-bar__submit search__submit btn--link" type="submit">
-            {% include 'icon-search' %}
-            <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
+<body>
+    {% section 'nav-desktop' %}
+    {% if template == 'index' %}
+    <div id="template-body" class='home-page'>
+    {% else %}
+    <div id="template-body">
+    {% endif %}
+    <div class="template-{{ template | split: '.' | first }}">
+    <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+    <div id="SearchDrawer" class="search-bar drawer drawer--top">
+      <div class="search-bar__table">
+        <div class="search-bar__table-cell search-bar__form-wrapper">
+          <form class="search search-bar__form" action="/search" method="get" role="search">
+            <button class="search-bar__submit search__submit btn--link" type="submit">
+              {% include 'icon-search' %}
+              <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
+            </button>
+            <input class="search__input search-bar__input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}">
+          </form>
+        </div>
+        <div class="search-bar__table-cell text-right">
+          <button type="button" class="btn--link search-bar__close js-drawer-close">
+            {% include 'icon-close' %}
+            <span class="icon__fallback-text">{{ 'general.search.close' | t }}</span>
           </button>
-          <input class="search__input search-bar__input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}">
-        </form>
-      </div>
-      <div class="search-bar__table-cell text-right">
-        <button type="button" class="btn--link search-bar__close js-drawer-close">
-          {% include 'icon-close' %}
-          <span class="icon__fallback-text">{{ 'general.search.close' | t }}</span>
-        </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  {% section 'header' %}
-  {% if template == 'index' %}
-    <div id="page-container">
-      <div class="home-page-container">
-          <main class="main-content" id="MainContent" role="main">
-            {{ content_for_layout }}
-          </main>
-      </div>
-  {% else %}
-    <div id="page-container" class="page-container">
-          <main class="main-content" id="MainContent" role="main">
-      {{ content_for_layout }}
-    </main>
-  {% endif %}
-    {% section 'footer' %}
+    {% section 'header' %}
+    {% if template == 'index' %}
+        <div class="home-page-container" id="page-container">
+            <main class="main-content" id="MainContent" role="main">
+              {{ content_for_layout }}
+            </main>
+        </div>
+    {% else %}
+      <div id="page-container" class="page-container">
+            <main class="main-content" id="MainContent" role="main">
+        {{ content_for_layout }}
+      </main>
+    {% endif %}
+      {% section 'footer' %}
+    </div>
   </div>
-</div>
+  </div> 
 </body>
 </html>
