@@ -1004,6 +1004,7 @@ function addSelectedClass1 (){
     cache.$mobileNavContainer
       .prepareTransition()
       .addClass(classes.navOpen);
+    $('#hamburger-container').addClass('no-display');
     
     cache.$mobileNavContainer.css({
       transform: 'translate3d(0, ' + translateHeaderHeight + 'px, 0)'
@@ -1032,7 +1033,7 @@ function addSelectedClass1 (){
 
     function closeMobileNav() {
     cache.$mobileNavContainer.prepareTransition().removeClass(classes.navOpen);
-
+    $('#hamburger-container').removeClass('no-display');
     cache.$mobileNavContainer.css({
       transform: 'translate3d(0, -100%, 0)'
     });
@@ -1058,18 +1059,12 @@ function addSelectedClass1 (){
   // a. Opening Desktop Navigation Menu
 
     function openDesktopNav() {
-//       var navWidth = $('#page-container').css('marginRight').substr(0,3);
       var navWidth = ($(window).width() - $('#page-container').outerWidth()) / 2;
-      var slideWidth = $('#slickSlide00').width();
-      var activeSlide = $('.slick-active').not('style').not('.slideshow__image').not('.slideshow__text-wrap').not('li');
-      var slide = activeSlide.attr('id');
-      $('#'+slide).width(slideWidth + 'px');
+      $('#hamburger-container').addClass('no-display');
      cache.$desktopNav
       .prepareTransition()
       .removeClass('no-display');
       $('#js-style').html('#template-body {transform: translateX(-' + (navWidth / 2) + 'px)} #DesktopNav { transform: translateX(-' + (navWidth) + 'px); width: ' + (navWidth) + 'px;}');
-
-//       $('#js-style').html('#template-body {transform: translateX( -' + navWidth + 'px;)} #DesktopNav { right: -' + navWidth + 'px; width: ' + navWidth + 'px;}');
 
     slate.a11y.trapFocus({
       $container: cache.$desktopNav,
@@ -1091,10 +1086,12 @@ function addSelectedClass1 (){
     }
 
     // b. Closing Desktop Navigation Menu
+  
 
    function closeDesktopNav() {
     cache.$desktopNav.prepareTransition().removeClass(classes.navOpen);
     cache.$pageContainer.removeAttr('style');
+    $('#hamburger-container').removeClass('no-display');
      $('#js-style').html('#template-body { transform: translateX(0);} #DesktopNav {right: -100%;}');
     cache.$mobileNavContainer.one('TransitionEnd.navToggle webkitTransitionEnd.navToggle transitionend.navToggle oTransitionEnd.navToggle', function() {
       slate.a11y.removeTrapFocus({
@@ -1102,49 +1099,7 @@ function addSelectedClass1 (){
         namespace: 'navFocus'
       });
     });
-     
-     // Enter code here to automatically change the current slide to the next slide
-     
-     var slideWidth = $('#slickSlide00').width();
-//      var slide0 = $('#slickSlide00');
-//      var slide1 = $('#slickSlide01');
-//      var slide2 = $('#slickSlide02');
-//      var slide3 = $('#slickSlide03');
-//      var dot0 = $('#slickDot00');
-     
-     var activeSlide = $('.slick-active').children().not('style').not('button').not('.slideshow__text-wrap').not('li');
-     //      var activeDot = $('.slick-active').not('style').not('div').not('.slideshow__image').not('.slideshow__text-wrap');
-//      var nextSlide = $('.slick-active').next().not('style').not('.slideshow__image').not('.slideshow__text-wrap').not('li');
-//      var nextDot = $('.slick-active').next().not('style').not('div').not('.slideshow__image').not('.slideshow__text-wrap');
-
-     
-//      // set z-index: 998; opacity: 0; for active slide
-     
-     activeSlide.css({
-       "width" : slideWidth + 'px'
-
-     });
-//      activeDot.removeClass('slick-active'); 
-     
-//      // if active slide is last slide, go to the first slide
-//     if(activeSlide.attr('id') === 'slickSlide03'){
-//       slide0.css({
-//         "z-index": "999",
-//         "opacity": "1",
-//         "width" : slideWidth + 'px'
-//       });
-//       dot0.addClass('slick-active'); 
-//     }
-
-//      // set z-index: 999; opacity: 1; for next slide
-     
-//      nextSlide.css({
-//        "z-index": "999",
-//        "opacity": "1",
-//        "width" : slideWidth + 'px'
-//      });
-//      nextDot.addClass('slick-active');
-     
+          
 //      // Update buttons
 
     cache.$mobileNavToggle

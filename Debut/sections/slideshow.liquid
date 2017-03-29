@@ -1,5 +1,4 @@
 <div data-section-id="{{ section.id }}" data-section-type="slideshow-section">
-
   {% if section.blocks.size > 0 %}
     <div class="slideshow-wrapper">
       <button type="button" class="visually-hidden slideshow__pause" data-id="{{ section.id }}" aria-live="polite">
@@ -12,7 +11,6 @@
           <span class="icon__fallback-text">{{ 'sections.slideshow.play_slideshow' | t }}</span>
         </span>
       </button>
-
       <div class="slideshow slideshow--{{ section.settings.slideshow_height }}" id="Slideshow-{{ section.id }}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed }}">
         {% for block in section.blocks %}
           {%- assign is_background_video = false -%}
@@ -28,7 +26,8 @@
             {% endif %}
 
             {% if block.settings.image != blank %}
-              <style>
+<!-- // insert the slide show styles here from theme.liquid //  -->
+                <style>
                 .slideshow__image--{{ block.id }} {
                   background-position: center {{ block.settings.alignment }};
                 }
@@ -68,7 +67,7 @@
                     background-image: url('{{ block.settings.image | img_url: '2000x' }}');
                   }
                 }
-              </style>
+              </style> 
             {% endif %}
 
             {% if block.type == 'video' %}

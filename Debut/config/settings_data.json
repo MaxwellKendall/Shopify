@@ -1,12 +1,12 @@
 {
   "current": {
-    "color_text": "#3d4246",
+    "color_text": "#363f55",
     "color_body_text": "#788188",
     "color_sale_text": "#7796A8",
     "color_borders": "#e8e9eb",
     "color_button": "#7796A8",
     "color_button_text": "#fff",
-    "color_small_button": "#fff",
+    "color_small_button": "#ffffff",
     "color_small_button_text": "#3d4246",
     "color_text_field": "#fff",
     "color_text_field_text": "#000",
@@ -23,14 +23,14 @@
     "share_twitter": true,
     "share_pinterest": true,
     "social_twitter_link": "",
-    "social_facebook_link": "",
+    "social_facebook_link": "https:\/\/www.facebook.com\/ckendallart\/",
     "social_pinterest_link": "https:\/\/www.pinterest.com\/HCKendall\/",
     "social_instagram_link": "https:\/\/www.instagram.com\/ckendallart\/",
     "social_tumblr_link": "",
     "social_snapchat_link": "",
     "social_youtube_link": "",
     "social_vimeo_link": "",
-    "favicon": "",
+    "favicon": "shopify:\/\/shop_images\/Screen_Shot_2017-03-25_at_8.53.37_PM.png",
     "checkout_header_image": "",
     "checkout_logo_image": "",
     "checkout_logo_position": "left",
@@ -66,54 +66,43 @@
           "slideshow-0": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/FinalSlideShowFlower.png",
+              "image": "shopify:\/\/shop_images\/SlideShowFlower_3_20_6468b9ff-a5d8-4a07-8bf6-4f97f880eed1.jpg",
               "alignment": "bottom",
-              "title": "",
-              "subheading": "",
-              "link": ""
+              "title": "Café Au Lait 24X30",
+              "subheading": "View Shop",
+              "link": "shopify:\/\/products\/pretty-flowers"
             }
           },
           "slideshow-1": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/AlternateFloralSlideshow.png",
+              "image": "shopify:\/\/shop_images\/BedroomSlideShow_3_20_ad839298-7a78-4d2e-8eaf-9dc23b274ea4.jpg",
               "alignment": "center",
-              "title": "",
+              "title": "Meet the Artist",
               "subheading": "",
-              "link": ""
+              "link": "shopify:\/\/pages\/about-me"
             }
           },
           "1486245852379": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/SlideShowBedroom.png",
+              "image": "shopify:\/\/shop_images\/SlideshowBrushes_320_2d29d0ac-3de3-420a-b9e2-75bf8fe571ef.jpg",
               "alignment": "center",
-              "title": "",
+              "title": "Request a Commission",
               "subheading": "",
-              "link": ""
-            }
-          },
-          "1486245886199": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/SlideShowBrushes.png",
-              "alignment": "top",
-              "title": "",
-              "subheading": "",
-              "link": ""
+              "link": "shopify:\/\/pages\/contact"
             }
           }
         },
         "block_order": [
           "slideshow-0",
           "slideshow-1",
-          "1486245852379",
-          "1486245886199"
+          "1486245852379"
         ],
         "settings": {
           "autoplay": true,
           "autoplay_speed": "5000",
-          "slideshow_height": "large",
+          "slideshow_height": "small",
           "text_size": "medium"
         }
       },
@@ -141,7 +130,7 @@
       "product-template": {
         "type": "product-template",
         "settings": {
-          "image_size": "medium",
+          "image_size": "large",
           "show_quantity_selector": false,
           "show_variant_labels": true,
           "show_vendor": false,

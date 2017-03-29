@@ -3702,6 +3702,7 @@ h1.product-single__title {
 .site-header .icon-close,
 .site-header .icon-cart {
   height: 30px;
+  width: 25px;
 
   @include media-query($medium-up) {
     margin-right: 3px;
@@ -4493,7 +4494,7 @@ $color-slideshow-close-text: #000;
   text-align: center;
   position: absolute;
   width: 100%;
-  top: 50%;
+  bottom: 10%;
   @include transform(translateY(-40%));
   opacity: 0;
   transition: $transition-text-slideshow;
@@ -4839,8 +4840,8 @@ $toolbar-height-small: 46px;
 }
 
 .site-footer {
-  margin: $section-spacing 0;
-
+/*   margin: $section-spacing 0;
+ */
   @include media-query($small) {
     text-align: center;
   }
@@ -4889,7 +4890,7 @@ $toolbar-height-small: 46px;
 
 .site-footer__social-icons,
 .site-footer__copyright {
-  margin-top: $section-spacing-small;
+  margin: $section-spacing-small 0px;
 
   @include media-query($medium-up) {
     margin-top: $section-spacing;
@@ -5528,6 +5529,30 @@ ul.mobile-nav li:first-child {
     @include media-query($medium-up){
 	width: 65%;
     }
+  .site-header__logo-link {
+    font-size: 27px;
+    color: #363F55;
+    font-style: normal;
+    font-weight: 500;
+    
+  }
+  
+  
+  div#hamburger-container:hover {
+  	#hamburger1, 
+    #hamburger2,
+    #hamburger3 {
+    	background: #972144;
+      	opacity: 1;
+    }
+  }
+  
+  a.site-header__cart:hover,
+  svg.icon.icon-close:hover,
+  a.site-header__logo-link:hover {
+    color: #972144;
+}
+  
   .logo-align--left {
       margin-right: auto;
       width: auto;
@@ -5551,8 +5576,17 @@ ul.mobile-nav li:first-child {
     position: relative;
     top: 0;
     left: 0;
+    color: black;
   }
 }
+
+button.btn--link.site-header__menu.js-mobile-nav-toggle.mobile-nav--open,
+button.btn--link.site-header__menu.js-mobile-nav-toggle.mobile-nav--close {
+      @include media-query($medium-up){ 
+  		margin-right: 15px;
+      }
+ }
+
 
 .no-display {
   display: none;
@@ -5591,7 +5625,7 @@ ul.mobile-nav li:first-child {
   left: 100%;
   height: 100vh;
   top: 0;
-  background: rgba(64, 176, 166, 0.75);
+  background: rgba(32, 42, 67, 0.9);  
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -5643,18 +5677,15 @@ ul.mobile-nav li:first-child {
 
 #DesktopNav a:hover {
   &{
-  background: rgba(178, 223, 219, 0.9);
-  cursor: pointer;
-  transform: scale(1.05);
-  transition: $hoverTransition;
+	border: 1px solid #E1EA48;
+    opacity: 1;
 	}
 }
 
 #selected-desktop-nav-item {
   a {
-  	color: #FBC02D;
-    border: 1px solid white;
-
+    color: white;
+    border: 1px solid #E1EA48;
   }
 }
 
@@ -5665,7 +5696,10 @@ ul.mobile-nav li:first-child {
 }
 
 /*================ Custom About Me Styles ================*/
-
+.abt-me-page-width {
+	display: flex;
+	justify-content: center;
+}
 .about-me {
     @include media-query($medium-up){
     display: flex;
@@ -5674,18 +5708,39 @@ ul.mobile-nav li:first-child {
     align-items: center;
 
 	}
+  
+  p.about-me-quote {
+    font-size: 24px;
+    font-weight: bold;
+    font-style: oblique;
+    font-family: "Avant Garde",Avantgarde,"Century Gothic",CenturyGothic,"AppleGothic",sans-serif;
+    margin-top: 7.5%;
+        @include media-query($medium-up){
+        	margin-top: 0px;
+        }
+  }
+  span.john-keats {
+    font-weight: normal;
+	}
 }
 .about-me-image {
-  width: 300px;
-  height: 450px;
-  background: url(https://cdn.shopify.com/s/files/1/1742/5577/files/aboutMe.jpg?8647923615133231551);
-  @include media-query($medium-up){
+    background: url(https://cdn.shopify.com/s/files/1/1742/5577/files/AboutMeFinal__XYZ.jpg?2692842537465013797);  
+    width: 100%;
+    height: 450px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5%;
     position: relative;
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+    background-size: cover;
+    @include media-query($medium-up){
+          margin-left: auto;
+          order: 2;
+          border-radius: 50%;
+          width: 300px;
+          height: 450px;
   }
     img {
       @include media-query($medium-up){
@@ -5712,33 +5767,26 @@ ul.mobile-nav li:first-child {
 /*================ Custom Contact Page Styles ================*/
 
 .form-vertical [type="submit"], .form-vertical .btn {
-    display: flex;
     width: 105%;
-    justify-content: center;
-    align-self: center;
     margin: auto;
     border-radius: 5px;
+  	text-align: center;
 }
 /*================ Custom home page styles ================*/
 
 #template-body {
     @include media-query($medium-up) {
     transition: $translationTransition;
-    padding-top: 100px;
-    background-size: cover;
-    background-position: center;
+    padding-top: 50px;
+    background-position-y: 0%;
     z-index: 1;
   }
 }
 
 .home-page {
     @include media-query($medium-up) {
-/*           background:  */
-    }
-}
 
-.site-footer {
-    margin: 55px 0 0 0;
+}
 }
 
 /*================ Products Page ================*/
@@ -5809,7 +5857,6 @@ span.product-price__sold-out::before {
 /*================ Footer ================*/
 
 .site-footer {
-  margin-top:2em;
   border-top: 1px solid #e8e9eb;
   .page-width {	
     display: flex;
@@ -5817,7 +5864,17 @@ span.product-price__sold-out::before {
     justify-content: center;
     align-items: center;
     margin-top: 2em;
+    
+  .grid.grid--no-gutters {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  	}
   }
+  
+  .grid__item.text-center {
+    order: 2;
+	}
   .medium-up--one-half {
   	width: 100%;
     display: flex;
@@ -5853,50 +5910,101 @@ span.product-price__sold-out::before {
   
 }
 
-/*================ Newsletter Page ================*/
+/*Social Icons*/
 
-#mc_embed_signup {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  h2 {
-    justify-content: center;
-    display: flex;
-  }
-  form {
-    width: 100%;
-  }
-
-  .mc-field-group input {
-    width: 100%;
-  }
-  
-  label {
-  	margin-top: 1.25em;
-  }
-  
-  input[type="submit"] {
-    cursor: pointer;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 1em;
-    font-family: "Avant Garde",Avantgarde,"Century Gothic",CenturyGothic,"AppleGothic",sans-serif;
-  }	
+.social-icons__link svg {
+    color: rgba(31,117,175,0.7);
 }
 
-#mce-EMAIL::-webkit-input-placeholder,
-#mce-EMAIL::-moz-placeholder{
-	text-align: right;
-  	padding-right: 30px;
-  	font-style: italic;
-  	
+
+/*================ Newsletter ================*/
+
+div#newsletter {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 13px;
 }
 
-input#ContactFormEmail::-webkit-input-placeholder,
-input#ContactFormEmail::-moz-placeholder{
-	text-align: right;
-  	padding-right: 5px;
-  	font-style: italic;
-  	
+.sign-up {
+	flex-direction: column;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    justify-content: center;
+  @include media-query($medium-up) {
+  	flex-direction: row;
+  }
+
+}
+
+input#mce-EMAIL {
+  width: 100%;
+    @include media-query($medium-up) {
+    margin-right: -11px;
+	}
+}
+
+#newsletter .clear {
+    width: 100%;
+    margin: 5px;
+  @include media-query($medium-up) {
+    width: 50%;
+	}
+  input {
+  	width: 100%;
+  }
+}
+
+input#mc-embedded-subscribe {
+    background: #991664;
+    color: white;
+    border: 0px solid yellow;
+}
+
+/* Slide Show Styles */
+
+.slideshow{
+      @include media-query($medium-up) {
+      	height: 775px;
+      }
+}
+
+/* Trying to make the footer and header layout uniform */
+
+.main-content {
+  @include media-query($medium-up) {
+    padding: 55px 0px;
+  }
+}
+
+div#hamburger-container {
+    width: 24px;
+    height: 23px;
+    position: relative;
+  	flex-direction: column;
+}
+
+#hamburger1,
+#hamburger2,
+#hamburger3 { 
+    width: 100%;
+    position: absolute;
+    height: 2.25px;
+    background: #363f55;
+}
+div#hamburger1 {
+    top: 8px;
+}
+div#hamburger2 {
+    top: 14px;
+}
+div#hamburger3 {
+    top: 20px;
+}
+
+button:focus,
+input[type="submit"]{
+	 -webkit-appearance: none;
 }
