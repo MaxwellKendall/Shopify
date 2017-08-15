@@ -2656,9 +2656,70 @@ theme.Product = (function() {
   function _destroyZoom($el) {
     $el.trigger('zoom.destroy');
   }
+  
+
 
   return Product;
 })();
+
+// July 4th Function added right before show for overlay gallery -- Please delete if this breaks everything. Thanks!
+  
+  function addOverlay(){
+
+  // Dont know why this isnt working
+  // function createElSetAttr(v, el, attr, attrV){
+  //   var v = document.createElement(el);
+  //   v.setAttribute(attr, attrV);
+  //   return v;
+  // }
+  // creating the elements
+
+    if (document.querySelectorAll('#gallery-overlay').length != 0){
+      return;
+    }
+      var overlay = document.createElement('div');
+      var imgContainer = document.createElement('div');
+      var img = document.createElement('img');
+      var src = document.getElementById('FeaturedImageZoom-product-template').getAttribute('data-zoom');
+      var title = document.createElement('h2');
+      var header = document.querySelectorAll('h1')[0].textContent;
+      var exitIcon = document.createElement('span');
+
+
+    // setting the attribute for the elements
+      overlay.setAttribute('id', 'gallery-overlay');
+      imgContainer.setAttribute('id', 'gallery-overlay-img-container');
+      img.setAttribute('id', 'gallery-overlay-img');
+      title.setAttribute('id', 'gallery-overlay-header');
+      exitIcon.setAttribute('id', 'gallery-exit-icon');
+    // appending the elements to the overlay
+
+    imgContainer.appendChild(img);
+    img.setAttribute('src', src);
+    // imgContainer.appendChild(exitIcon);
+    // exitIcon.innerHTML = "<i class='fa fa-times' aria-hidden='true'></i>";
+    imgContainer.appendChild(title);
+    title.innerHTML = header;
+
+    // appending the overlay to the body
+      var body = document.getElementById('template-body');
+      body.appendChild(overlay);
+      body.appendChild(imgContainer);
+
+    // add event listener to overlay if clicked
+    imgContainer.addEventListener('click', function(){
+      console.log('close overlay function triggered');
+      body.removeChild(imgContainer);
+      body.removeChild(overlay);
+
+    });
+    
+  }
+  
+  if (document.querySelectorAll('#FeaturedImageZoom-product-template').length != 0){
+      var picture = document.getElementById('FeaturedImageZoom-product-template');
+      picture.addEventListener('click', addOverlay);
+  } 
 
 theme.Quotes = (function() {
   var config = {

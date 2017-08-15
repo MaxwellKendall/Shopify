@@ -382,7 +382,7 @@ $color-text-hero-button: #000;
 
 /*================ Hero Slider ================*/
 $color-slideshow-arrows: #000;
-$color-slideshow-dots: #fff;
+$color-slideshow-dots: #991664;
 
 $transition-text-slideshow: all 0.6s cubic-bezier(0.44, 0.13, 0.48, 0.87);
 $transition-image-slideshow: opacity 0.8s cubic-bezier(0.44, 0.13, 0.48, 0.87);
@@ -1761,7 +1761,7 @@ a {
   margin: ($gutter-site * 1.5) 0;
 
   @include media-query($small) {
-    margin-bottom: (-$section-spacing) - 1; // same as .site-footer
+    margin-bottom: ($section-spacing) - 1; // same as .site-footer
 
     .btn {
       display: block;
@@ -5677,7 +5677,7 @@ button.btn--link.site-header__menu.js-mobile-nav-toggle.mobile-nav--close {
 
 #DesktopNav a:hover {
   &{
-	border: 1px solid #E1EA48;
+	border: 1px solid #fff;
     opacity: 1;
 	}
 }
@@ -5685,7 +5685,7 @@ button.btn--link.site-header__menu.js-mobile-nav-toggle.mobile-nav--close {
 #selected-desktop-nav-item {
   a {
     color: white;
-    border: 1px solid #E1EA48;
+    border: 1px solid #fff;
   }
 }
 
@@ -5829,7 +5829,7 @@ span.product-price__sold-out::before {
     top: 0;
     font-family: "Avant Garde",Avantgarde,"Century Gothic",CenturyGothic,"AppleGothic",sans-serif;
     background: rgb(213, 233, 255);
-    width: 25%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -5843,15 +5843,28 @@ span.product-price__sold-out::before {
     box-shadow: 2px 1px 5px 0px rgba(0,0,0,0.75);
     border-radius: 0px 5px 5px 0px;
   	opacity: 0.9;
+    @include media-query($medium-up) {
+        width: 25%;
+    }
 }
 
 /*================ Notification Bar Styles ================*/
 
 .notification-bar {
-    background-color: #7796A8;
+
+  @include media-query($medium-up) {
     position: absolute;
-    width: 100%;
+    width: 110%;
     top: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+.notification-bar__message {
+    @include media-query($medium-up) {
+    	  margin-right: 10%;
+    }
+  }
 }
 
 /*================ Footer ================*/
@@ -5915,8 +5928,48 @@ span.product-price__sold-out::before {
 .social-icons__link svg {
     color: rgba(31,117,175,0.7);
 }
+/*================ Custom Gallery Styles ================*/
+div#gallery-overlay {
+    position: fixed;
+    display: block;
+    top: 0;
+    min-height: 100vh;
+    min-width: 100%;
+    background: #fff;
+    opacity: .9;
+    z-index: 10;
+}
+
+div#gallery-overlay-img-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 10px;
+    z-index: 99999;
+}
+
+img#gallery-overlay-img {
+  max-height: 90%;
+  -webkit-box-shadow: 6px 10px 20px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 6px 10px 20px 0px rgba(0,0,0,0.75);
+  box-shadow: 6px 10px 20px 0px rgba(0,0,0,0.75);
+}
+
+h2#gallery-overlay-header {
+    padding: 25px;
+    font-family: $font-stack-header;
+    border-radius: 5px;
+    text-transform: none;
+}
 
 
+#FeaturedImageZoom-product-template {
+    cursor: pointer;
+}
 /*================ Newsletter ================*/
 
 div#newsletter {
@@ -6007,4 +6060,8 @@ div#hamburger3 {
 button:focus,
 input[type="submit"]{
 	 -webkit-appearance: none;
+}
+
+.slideshow_slide:hover {
+	opacity: 1;
 }
